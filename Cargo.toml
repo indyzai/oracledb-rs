@@ -1,6 +1,6 @@
 [package]
 name = "oracledb-rs"
-version = "0.1.0"
+version = "1.0.0"
 edition = "2021"
 authors = ["Indyzai <contact@indyzai.com>"]
 description = "Oracle Database driver for Rust - high performance async/sync connectivity"
