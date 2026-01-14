@@ -142,7 +142,7 @@ impl Error {
                 matches!(
                     code,
                     // Connection errors
-                    17002 | 17008 | 17410 | 
+                    17002 | 17008 | 17410 |
                     // Session errors
                     1012 | 1013 | 1089 |
                     // Resource busy
@@ -166,34 +166,34 @@ impl Error {
 pub mod codes {
     /// Unique constraint violated
     pub const UNIQUE_CONSTRAINT: i32 = 1;
-    
+
     /// Invalid username/password
     pub const INVALID_USERNAME_PASSWORD: i32 = 1017;
-    
+
     /// Not logged on
     pub const NOT_LOGGED_ON: i32 = 1012;
-    
+
     /// No data found
     pub const NO_DATA_FOUND: i32 = 1403;
-    
+
     /// Too many rows
     pub const TOO_MANY_ROWS: i32 = 1422;
-    
+
     /// Deadlock detected
     pub const DEADLOCK: i32 = 60;
-    
+
     /// Resource busy
     pub const RESOURCE_BUSY: i32 = 54;
-    
+
     /// Timeout occurred
     pub const TIMEOUT: i32 = 1013;
-    
+
     /// Connection timeout
     pub const CONNECTION_TIMEOUT: i32 = 17002;
-    
+
     /// End of file on communication channel
     pub const EOF_COMMUNICATION: i32 = 3113;
-    
+
     /// TNS: could not resolve service name
     pub const TNS_NO_SERVICE: i32 = 12154;
 }
