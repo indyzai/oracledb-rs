@@ -1,13 +1,17 @@
 [package]
 name = "oracledb-rs"
 version = "0.1.0"
-edition = "2024"
-authors = ["Your Name <you@example.com>"]
+edition = "2021"
+authors = ["Indyzai <contact@indyzai.com>"]
 description = "Oracle Database driver for Rust - high performance async/sync connectivity"
 license = "MIT OR Apache-2.0"
 repository = "https://github.com/indyzai/oracledb-rs"
+documentation = "https://docs.rs/oracledb-rs"
+homepage = "https://github.com/indyzai/oracledb-rs"
 keywords = ["oracle", "database", "sql", "async", "driver"]
 categories = ["database"]
+readme = "README.md"
+exclude = [".github/", "examples/"]
 
 [dependencies]
 # Async runtime
@@ -36,7 +40,7 @@ log = "0.4"
 tracing = "0.1"
 
 # Date/Time
-chrono = "0.4"
+chrono = { version = "0.4", features = ["serde"] }
 
 # Encoding
 encoding_rs = "0.8"
@@ -65,7 +69,3 @@ path = "examples/simple_query.rs"
 [[example]]
 name = "connection_pool"
 path = "examples/connection_pool.rs"
-
-[[bench]]
-name = "query_benchmark"
-harness = false

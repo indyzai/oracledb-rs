@@ -1,0 +1,31 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ main ]
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  docs:
+    name: Build and Deploy Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        
+      - name: Build documentation
+        run: cargo doc --no-deps --all-features
+        
+      - name: Add index redirect
+        run: echo '<meta http-equiv="refresh" content="0; url=oracledb_rs">' > target/doc/index.html
+        
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        if: github.ref == 'refs/heads/main'
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/doc
+          cname: docs.yourdomain.com  # Optional: set your custom domain

@@ -107,7 +107,7 @@ impl ResultSet {
     }
 
     /// Fetch next row
-    pub fn next(&mut self) -> Option<&Row> {
+    pub fn fetch_next(&mut self) -> Option<&Row> {
         if self.current_row < self.rows.len() {
             let row = &self.rows[self.current_row];
             self.current_row += 1;

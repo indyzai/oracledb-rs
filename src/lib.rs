@@ -44,13 +44,21 @@
 //! }
 //! ```
 
+/// Authentication mechanisms for Oracle Database
 pub mod auth;
+/// Connection management and configuration
 pub mod connection;
+/// Error types and handling
 pub mod error;
+/// Connection pooling functionality
 pub mod pool;
+/// Oracle network protocol implementation
 pub mod protocol;
+/// Result formatting and utilities
 pub mod result;
+/// SQL statement execution
 pub mod statement;
+/// Oracle data type mappings
 pub mod types;
 
 pub use connection::{Connection, ConnectionConfig, ConnectionMode};

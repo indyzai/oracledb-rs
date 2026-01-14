@@ -3,7 +3,6 @@
 use crate::statement::Row;
 use crate::types::{ColumnInfo, OracleType, Value};
 use crate::{ConnectionConfig, Error, Result};
-use std::collections::HashMap;
 
 /// Oracle network protocol handler
 pub struct Protocol {
@@ -12,6 +11,7 @@ pub struct Protocol {
     // - Session state
     // - Statement cache
     // - Encoding information
+    #[allow(dead_code)]
     config: ConnectionConfig,
     session_id: Option<u64>,
     is_connected: bool,
@@ -108,7 +108,7 @@ impl Protocol {
         match stmt_type {
             StatementType::Select => self.execute_query(sql, params).await,
             StatementType::Insert | StatementType::Update | StatementType::Delete => {
-                let count = self.execute_dml(sql, params).await?;
+                let _count = self.execute_dml(sql, params).await?;
                 // Return empty result set with row count in metadata
                 Ok((vec![], vec![]))
             }
@@ -241,11 +241,10 @@ impl Protocol {
             Ok(StatementType::Delete)
         } else if trimmed.starts_with("BEGIN") || trimmed.starts_with("DECLARE") {
             Ok(StatementType::PlSql)
-        } else if trimmed.starts_with("CREATE") {
-            Ok(StatementType::Ddl)
-        } else if trimmed.starts_with("ALTER") {
-            Ok(StatementType::Ddl)
-        } else if trimmed.starts_with("DROP") {
+        } else if trimmed.starts_with("CREATE")
+            || trimmed.starts_with("ALTER")
+            || trimmed.starts_with("DROP")
+        {
             Ok(StatementType::Ddl)
         } else {
             Ok(StatementType::Unknown)
@@ -255,6 +254,7 @@ impl Protocol {
 
 /// Connection information parsed from connection string
 #[derive(Debug, Clone)]
+#[allow(dead_code)]
 struct ConnectionInfo {
     host: String,
     port: u16,

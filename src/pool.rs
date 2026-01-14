@@ -202,6 +202,7 @@ impl Clone for Pool {
 /// A connection from the pool
 pub struct PooledConnection {
     connection: Option<Connection>,
+    #[allow(dead_code)]
     pool: Pool,
     _permit: tokio::sync::OwnedSemaphorePermit,
 }

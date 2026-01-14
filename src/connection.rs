@@ -3,7 +3,7 @@
 use crate::auth::Authenticator;
 use crate::protocol::Protocol;
 use crate::statement::{ResultSet, Statement};
-use crate::{Error, ExecuteOptions, Mode, Privilege, Result};
+use crate::{Error, Privilege, Result};
 use std::sync::Arc;
 use tokio::sync::Mutex;
 
@@ -237,10 +237,15 @@ impl Connection {
 /// Connection information
 #[derive(Debug, Clone)]
 pub struct ConnectionInfo {
+    /// Connection mode (Thin or Thick)
     pub mode: ConnectionMode,
+    /// Username
     pub user: String,
+    /// Connection string
     pub connection_string: String,
+    /// Whether the connection is currently open
     pub is_open: bool,
+    /// Whether a transaction is currently active
     pub transaction_active: bool,
 }
 
